@@ -1,9 +1,11 @@
 #include <cstdlib>
-#include <GL\glew.h>
-#include <glut\glut.h>
+#include <GL/glew.h>
+#include <glut/glut.h>
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
+#include "expression/expressions.h"
 
 //Window dimensions
 const int gWidth  = 1200;
@@ -34,7 +36,7 @@ float *gPointCache = 0;
 //Function variables
 int gFunctionID = 0;
 bool gFunctionChanged = true;
-
+BaseExpression* gCustomFunction;
 
 //Renders a string of characters to the screen
 void renderCharacters(float pX, float pY, float pZ, void *pFont, char *pCharArray) 
@@ -139,6 +141,7 @@ void renderUI()
 	renderCharacters(5,220,0,GLUT_BITMAP_HELVETICA_12,"Zoom:  Hold right-mouse and pan");
 	renderCharacters(5,240,0,GLUT_BITMAP_HELVETICA_12,"Next function:  q");
 	renderCharacters(5,260,0,GLUT_BITMAP_HELVETICA_12,"Previous function:  w");
+	renderCharacters(5,300,0,GLUT_BITMAP_HELVETICA_12,"Add custom function in console:  c");
 
 	//Render the function name
 	renderCharacters((gWidth - strlen(gFunctionString)*8)/2,gHeight-20,0,GLUT_BITMAP_HELVETICA_18, gFunctionString);
@@ -170,6 +173,10 @@ void renderPoints()
 			{
 				switch(gFunctionID)
 				{
+					case -1:
+						y= gCustomFunction->evaluate(i,j);
+						strcpy(gFunctionString, "Custom Function");
+						break;
 					case 0:
 						y = log(i*i) + log(j);
 						strcpy(gFunctionString,"Function 1: ln(x^2) + ln(y) = z");
@@ -286,6 +293,17 @@ void keyboard (unsigned char pKey, int pX, int pY)
 		gFunctionID--;
 		gFunctionChanged = true;
 	}
+	else if(pKey == 'c')
+	{
+
+		std::string lString;
+		std::cin >> std::noskipws >> lString;
+
+		gCustomFunction = processString(lString);
+		gFunctionID = -1;
+		gFunctionChanged = true;
+
+	}
 }
 
 //Handles mouse motion
@@ -394,10 +412,14 @@ int main(int argc, char **argv)
 	//Initialize the point cache
 	gPointCache = (float*)malloc(gXRes * gYRes * sizeof(float));
 
-
 	//Start the main GL loop, will terminate when the window is closed.
 	glutMainLoop();
+
+	//Free stuff
+	if(gCustomFunction)
+		delete gCustomFunction;
 	
+	delete gPointCache;
 
 	//Bye bye.
 	return 0;

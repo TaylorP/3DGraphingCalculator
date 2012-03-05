@@ -70,6 +70,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RPN\rpnBuilder.cpp" />
+    <ClCompile Include="RPN\token.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="expression\addExpression.h" />
+    <ClInclude Include="expression\baseExpression.h" />
+    <ClInclude Include="expression\divideExpression.h" />
+    <ClInclude Include="expression\expressions.h" />
+    <ClInclude Include="expression\multiplyExpression.h" />
+    <ClInclude Include="expression\numberExpression.h" />
+    <ClInclude Include="expression\powExpression.h" />
+    <ClInclude Include="expression\subtractExpression.h" />
+    <ClInclude Include="expression\variableExpression.h" />
+    <ClInclude Include="RPN\rpnBuilder.h" />
+    <ClInclude Include="RPN\token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

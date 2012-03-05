@@ -13,10 +13,57 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\expression">
+      <UniqueIdentifier>{29e6b9c9-fb35-49a9-b996-2b06c09d78b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\rpn">
+      <UniqueIdentifier>{fa815642-707d-487b-9ad4-faa044bb5837}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RPN\rpnBuilder.cpp">
+      <Filter>Source Files\rpn</Filter>
+    </ClCompile>
+    <ClCompile Include="RPN\token.cpp">
+      <Filter>Source Files\rpn</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RPN\rpnBuilder.h">
+      <Filter>Source Files\rpn</Filter>
+    </ClInclude>
+    <ClInclude Include="RPN\token.h">
+      <Filter>Source Files\rpn</Filter>
+    </ClInclude>
+    <ClInclude Include="expression\addExpression.h">
+      <Filter>Source Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="expression\baseExpression.h">
+      <Filter>Source Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="expression\divideExpression.h">
+      <Filter>Source Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="expression\multiplyExpression.h">
+      <Filter>Source Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="expression\numberExpression.h">
+      <Filter>Source Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="expression\powExpression.h">
+      <Filter>Source Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="expression\subtractExpression.h">
+      <Filter>Source Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="expression\variableExpression.h">
+      <Filter>Source Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="expression\expressions.h">
+      <Filter>Source Files\expression</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
