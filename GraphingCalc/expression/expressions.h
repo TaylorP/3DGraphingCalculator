@@ -1,3 +1,5 @@
+//Written by Taylor Petrick
+
 #include "expression\baseExpression.h"
 
 #include "expression\addExpression.h"
@@ -19,18 +21,18 @@ BaseExpression* processString(std::string s)
 	std::stack<BaseExpression*> lExpression;
 	for(int i =0; i<vec.size(); i++)
 	{
-		if(vec[i].getType() == TokenType::Variable)
+		if(vec[i].getType() == eVariable)
 		{
 			if(vec[i].toString() == "x")
 				lExpression.push(XVAR);
 			else
 				lExpression.push(YVAR);
 		}
-		else if(vec[i].getType() == TokenType::Literal)
+		else if(vec[i].getType() == eLiteral)
 		{
 			lExpression.push(new NumberExpression(atof(vec[i].toString().c_str())));
 		}
-		else if(vec[i].getType() == TokenType::Operator)
+		else if(vec[i].getType() == eOperator)
 		{
 			BaseExpression* lRight = lExpression.top();
 			lExpression.pop();

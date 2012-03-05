@@ -1,28 +1,35 @@
-#include "Token.h"
+//Written by Rollen D'Souza
 
-Token::Token ( TokenType type, std::string repres )
+#include "token.h"
+
+//Constructs a token from a string representation and type
+Token::Token(TokenType pType, std::string pRepresentation)
 {
-	_type = type;
-	_value = repres;
+	mType = pType;
+	mValue = pRepresentation;
 }
 
-Token::Token ( double value ) 
+//Constructs a literal token from a double value
+Token::Token(double pValue) 
 {
-	_valueAsFloat = value;
-	_type = Literal;
+	mValueAsFloat = pValue;
+	mType = eLiteral;
 }
 
-double Token::getValue ( ) 
+//Returns the float value of the token, for literals
+double Token::getValue() 
 {
-	return _valueAsFloat;
+	return mValueAsFloat;
 }
 
-TokenType Token::getType ( ) 
+//Returns the type of token
+TokenType Token::getType() 
 {
-	return _type;
+	return mType;
 }
 
-std::string Token::toString ( ) 
+//Return the string representation of the token
+std::string Token::toString() 
 {
-	return _value;
+	return mValue;
 }

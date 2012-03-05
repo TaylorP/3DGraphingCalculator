@@ -1,3 +1,5 @@
+//Written by Taylor Petrick
+
 #ifndef NUMBER_EXPRESSION_H
 #define NUMBER_EXPRESSION_H
 

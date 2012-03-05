@@ -1,3 +1,5 @@
+//Written by Jason Chan
+
 #include "RPNBuilder.h"
 
 using namespace std;
@@ -24,7 +26,7 @@ std::vector<Token> RPNBuilder::toRPN ( std::vector<Token> mother )
 		Token monkey = mother[i];
 
 		//Operator case
-		if(monkey.getType()==Operator)
+		if(monkey.getType()==eOperator)
 		{
 			op = monkey.toString();
 			oplvl = opLevel(op);
@@ -59,7 +61,7 @@ std::vector<Token> RPNBuilder::toRPN ( std::vector<Token> mother )
 				opStack.push(monkey);\
 			}
 		}
-		else if(monkey.getType() == Literal || monkey.getType() == Variable)
+		else if(monkey.getType() == eLiteral || monkey.getType() == eVariable)
 		{
 			//Literal or Variable Name Case
 			output.push_back(monkey);
@@ -138,29 +140,29 @@ std::vector<Token> RPNBuilder::buildTokenList ( std::string s )
 {
 	std::vector<Token> tokenList = std::vector<Token>();
 
-	TokenType currState = Base;
+	TokenType currState = eBase;
 	std::string temp = "";
 
 	for ( int i = 0; i < s.length(); i++ )
 	{
 		switch ( currState ) 
 		{
-		case TokenType::Base:
+		case eBase:
 			temp += s[i];
 			if ( s[i] >= 48 && s[i] <= 57 ) 
 			{
 				//Definitely some sort of literal.
-				currState = Literal;
+				currState = eLiteral;
 			}
 			else if ( ( s[i] >= 65 && s[i] <= 90 ) || ( s[i] >= 97 && s[i] <= 122 ) ) 
 			{
 				//Definitely a character 
-				currState = Variable;
+				currState = eVariable;
 			}
 			else if ( findInOpList ( s[i] ) >= 0 ) 
 			{
 				//Operator
-				currState = Operator;
+				currState = eOperator;
 			}
 			else
 			{
@@ -168,7 +170,7 @@ std::vector<Token> RPNBuilder::buildTokenList ( std::string s )
 			}
 			break;
 
-		case TokenType::Variable:
+		case eVariable:
 			//Gotta check whether the variable name continues...
 			if (   ( s[i] >= 65 && s[i] <= 90 ) 
 				|| ( s[i] >= 97 && s[i] <= 122 ) 
@@ -181,15 +183,15 @@ std::vector<Token> RPNBuilder::buildTokenList ( std::string s )
 				tokenList.push_back(Token(currState,temp));
 				temp = s[i];
 				if ( s[i] >= 48 && s[i] <= 57 ) 
-					currState = Literal;
+					currState = eLiteral;
 				else if ( ( s[i] >= 65 && s[i] <= 90 ) || ( s[i] >= 97 && s[i] <= 122 ) )  
-					currState = Variable;
+					currState = eVariable;
 				else if ( findInOpList ( s[i] ) >= 0 )
-					currState = Operator;
+					currState = eOperator;
 			}
 			break;
 
-		case TokenType::Literal:
+		case eLiteral:
 			//Literals are numbers...including decimal place :)
 			if ( (s[i] >= 48 && s[i] <= 57) || (s[i]=='.') ) 
 				temp += s[i];
@@ -198,24 +200,24 @@ std::vector<Token> RPNBuilder::buildTokenList ( std::string s )
 				tokenList.push_back(Token(currState,temp));
 				temp = s[i];
 				if ( s[i] >= 48 && s[i] <= 57 ) 
-					currState = Literal;
+					currState = eLiteral;
 				else if ( ( s[i] >= 65 && s[i] <= 90 ) || ( s[i] >= 97 && s[i] <= 122 ) )  
-					currState = Variable;
+					currState = eVariable;
 				else if ( findInOpList ( s[i] ) >= 0 )
-					currState = Operator;
+					currState = eOperator;
 			}
 			break;
 
-		case TokenType::Operator:
+		case eOperator:
 			//Just push it into the token list and put the next character into a new state.
 			tokenList.push_back(Token(currState,temp));
 			temp = s[i];
 			if ( s[i] >= 48 && s[i] <= 57 ) 
-				currState = Literal;
+				currState = eLiteral;
 			else if ( ( s[i] >= 65 && s[i] <= 90 ) || ( s[i] >= 97 && s[i] <= 122 ) )  
-				currState = Variable;
+				currState = eVariable;
 			else if ( findInOpList ( s[i] ) >= 0 )
-				currState = Operator;
+				currState = eOperator;
 			break;
 		}
 	}

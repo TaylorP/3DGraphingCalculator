@@ -1,8 +1,12 @@
+//Written by Taylor Petrick
+
 #ifndef SUBTRACT_EXPRESSION_H
 #define SUBTRACT_EXPRESSION_H
 
+
 #include "baseExpression.h"
 
+//Expression
 class SubtractExpression : public BaseExpression
 {
 	public:

@@ -1,3 +1,5 @@
+//Written by Taylor Petrick
+
 #ifndef MULTIPLY_EXPRESSION_H
 #define MULTIPLY_EXPRESSION_H
 

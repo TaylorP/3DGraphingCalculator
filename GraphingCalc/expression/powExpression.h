@@ -1,3 +1,5 @@
+//Written by Taylor Petrick
+
 #ifndef POWER_EXPRESSION_H
 #define POWER_EXPRESSION_H
 

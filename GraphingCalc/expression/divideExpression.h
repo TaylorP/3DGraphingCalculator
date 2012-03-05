@@ -1,3 +1,5 @@
+//Written by Taylor Petrick
+
 #ifndef DIVIDE_EXPRESSION_H
 #define DIVIDE_EXPRESSION_H
 
