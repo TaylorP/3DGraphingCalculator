@@ -1,1 +1,0 @@
-To compile this project, the GLUT and GLEW libraries are needed. The default Visual Studio project provided includes these libraries with relative paths. Documentation of the functionality and code can be found in the source itself.
