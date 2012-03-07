@@ -1,7 +1,11 @@
 //Written by Taylor Petrick
 
 #include <cstdlib>
+
+#ifndef __APPLE__
 #include <GL/glew.h>
+#endif
+
 #include <glut/glut.h>
 #include <math.h>
 #include <stdio.h>
@@ -45,6 +49,9 @@ int    gPointSize = 1;
 int  gFunctionID = 0;
 bool gFunctionChanged = true;
 BaseExpression* gCustomFunction;
+
+//Window ID
+static int gWinID;
 
 //Renders a string of characters to the screen
 void renderCharacters(float pX, float pY, float pZ, void *pFont, char *pCharArray) 
@@ -151,12 +158,13 @@ void renderUI()
 	renderCharacters(5,80,0,GLUT_BITMAP_HELVETICA_12, gPointString);
 	renderCharacters(5,200,0,GLUT_BITMAP_HELVETICA_12,"Camera:  Hold left-mouse and pan");
 	renderCharacters(5,220,0,GLUT_BITMAP_HELVETICA_12,"Zoom:  Hold right-mouse and pan");
-	renderCharacters(5,240,0,GLUT_BITMAP_HELVETICA_12,"Next function:  q");
+	renderCharacters(5,240,0,GLUT_BITMAP_HELVETICA_12,"Next function:  s");
 	renderCharacters(5,260,0,GLUT_BITMAP_HELVETICA_12,"Previous function:  w");
 	renderCharacters(5,280,0,GLUT_BITMAP_HELVETICA_12,"Add custom function in console:  c");
 	renderCharacters(5,300,0,GLUT_BITMAP_HELVETICA_12,"Toggle axis frame:  t");
 	renderCharacters(5,320,0,GLUT_BITMAP_HELVETICA_12,"Toggle inverted negatives:  n");
 	renderCharacters(5,340,0,GLUT_BITMAP_HELVETICA_12,"Increase/decease point size:  -/+");
+    renderCharacters(5,360,0,GLUT_BITMAP_HELVETICA_12, "Quit: q");
 
 	//Render the function name
 	renderCharacters((gWidth - strlen(gFunctionString)*8)/2,gHeight-20,0,GLUT_BITMAP_HELVETICA_18, gFunctionString);
@@ -306,7 +314,7 @@ void renderScene()
 void keyboard (unsigned char pKey, int pX, int pY) 
 {
 	//If the q was pressed, increment the function counter
-	if ((pKey=='q' || pKey =='Q') && gFunctionID < 6)
+	if ((pKey=='s' || pKey =='s') && gFunctionID < 6)
     {
 		gFunctionID++;
 		gFunctionChanged = true;
@@ -350,6 +358,13 @@ void keyboard (unsigned char pKey, int pX, int pY)
 
 		sprintf(gPointString,"Point Size: %i",gPointSize);
 	}
+    else if(pKey == 'q' || pKey == 'Q')
+    {
+        glutDestroyWindow(gWinID);
+        delete gPointCache;
+        delete gCustomFunction;
+        exit(0);
+    }
 }
 
 //Handles mouse motion
@@ -432,7 +447,7 @@ int main(int argc, char **argv)
 	//Window settings
 	glutInitWindowPosition(100,100);
 	glutInitWindowSize(gWidth,gHeight);
-	glutCreateWindow("3D Calculator");
+	gWinID = glutCreateWindow("3D Calculator");
 
 	//The functions for handling keyboard/mouse input
 	glutKeyboardFunc(keyboard);

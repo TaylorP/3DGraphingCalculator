@@ -1,7 +1,22 @@
 //Written by Taylor Petrick
 
-#include "expression\baseExpression.h"
 
+#ifdef __APPLE__
+
+#include "baseExpression.h"
+#include "addExpression.h"
+#include "divideExpression.h"
+#include "multiplyExpression.h"
+#include "numberExpression.h"
+#include "powExpression.h"
+#include "subtractExpression.h"
+#include "variableExpression.h"
+#include "rpnBuilder.h"
+#include "token.h"
+
+#else
+
+#include "expression/baseExpression.h"
 #include "expression\addExpression.h"
 #include "expression\divideExpression.h"
 #include "expression\multiplyExpression.h"
@@ -9,9 +24,11 @@
 #include "expression\powExpression.h"
 #include "expression\subtractExpression.h"
 #include "expression\variableExpression.h"
-
 #include "RPN/rpnBuilder.h"
 #include "RPN/token.h"
+
+#endif
+
 
 BaseExpression* processString(std::string s)
 {
