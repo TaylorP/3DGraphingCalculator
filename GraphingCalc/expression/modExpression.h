@@ -3,46 +3,47 @@
 //
 //3D Graphing Calculator Project
 
-#ifndef MULTIPLY_EXPRESSION_H
-#define MULTIPLY_EXPRESSION_H
+#ifndef MOD_EXPRESSION_H
+#define MOD_EXPRESSION_H
 
 #include "baseExpression.h"
 
-///A multiplication expression class
-class MultiplyExpression : public BaseExpression
+///Modulo operation in the expression tree. Computes left % right.
+class ModExpression : public BaseExpression
 {
-    
+	
 public:
-
-    ///Constructs a new multiplication expression from a left and right expression
-    MultiplyExpression(BaseExpression* pLeft, BaseExpression* pRight)
+    
+    ///Constructs an addition expression from a left and right expression
+    ModExpression(BaseExpression* pLeft, BaseExpression* pRight)
     {
         mLeft = pLeft;
         mRight = pRight;
     }
     
-    ///Destructs this multiplication expression
-    ~MultiplyExpression()
+    ///Destroys this expression
+    ~ModExpression()
     {
         delete mLeft;
         delete mRight;
     }
-
+    
     ///Evaluates the expression at the point pX, pY
     inline virtual float evaluate(float pX, float pY)
     {
-        return mLeft->evaluate(pX, pY) * mRight->evaluate(pX, pY);
+        return fmod(mLeft->evaluate(pX, pY),mRight->evaluate(pX, pY));
     }
     
-    ///Prints this expression
+    ///Prints the expression to the console
     virtual void printExpression()
     {
         printf("(");
         mLeft->printExpression();
-        printf(" * ");
+        printf(" % ");
         mRight->printExpression();
         printf(")");
     }
+    
 };
 
 #endif

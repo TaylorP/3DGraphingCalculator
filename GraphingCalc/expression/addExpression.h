@@ -1,39 +1,49 @@
+//Copyright Marmoset Software, 2012
 //Written by Taylor Petrick
+//
+//3D Graphing Calculator Project
 
 #ifndef ADD_EXPRESSION_H
 #define ADD_EXPRESSION_H
 
 #include "baseExpression.h"
 
+///Addition operation in the expression tree. Adds two expressions together.
 class AddExpression : public BaseExpression
 {
-	public:
+	
+public:
 
-		AddExpression(BaseExpression* pLeft, BaseExpression* pRight)
-		{
-			mLeft = pLeft;
-			mRight = pRight;
-		}
+    ///Constructs an addition expression from a left and right expression
+    AddExpression(BaseExpression* pLeft, BaseExpression* pRight)
+    {
+        mLeft = pLeft;
+        mRight = pRight;
+    }
 
-		~AddExpression()
-		{
-			delete mLeft;
-			delete mRight;
-		}
+    ///Destroys this expression
+    ~AddExpression()
+    {
+        delete mLeft;
+        delete mRight;
+    }
 
-		inline virtual float evaluate(float pX, float pY)
-		{
-			return mLeft->evaluate(pX, pY) + mRight->evaluate(pX, pY);
-		}
+    ///Evaluates the expression at the point pX, pY
+    inline virtual float evaluate(float pX, float pY)
+    {
+        return mLeft->evaluate(pX, pY) + mRight->evaluate(pX, pY);
+    }
 
-		virtual void printExpression()
-		{
-			printf("(");
-			mLeft->printExpression();
-			printf(" + ");
-			mRight->printExpression();
-			printf(")");
-		}
+    ///Prints the expression to the console
+    virtual void printExpression()
+    {
+        printf("(");
+        mLeft->printExpression();
+        printf(" + ");
+        mRight->printExpression();
+        printf(")");
+    }
+    
 };
 
 #endif

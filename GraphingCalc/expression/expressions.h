@@ -1,4 +1,7 @@
+//Copyright Marmoset Software, 2012
 //Written by Taylor Petrick
+//
+//3D Graphing Calculator Project
 
 
 #ifdef __APPLE__
@@ -6,10 +9,14 @@
 #include "baseExpression.h"
 #include "addExpression.h"
 #include "divideExpression.h"
+#include "lnExpression.h"
+#include "logExpression.h"
+#include "modExpression.h"
 #include "multiplyExpression.h"
 #include "numberExpression.h"
 #include "powExpression.h"
 #include "subtractExpression.h"
+#include "trigExpression.h"
 #include "variableExpression.h"
 #include "rpnBuilder.h"
 #include "token.h"

@@ -3,45 +3,43 @@
 //
 //3D Graphing Calculator Project
 
-#ifndef POWER_EXPRESSION_H
-#define POWER_EXPRESSION_H
+#ifndef LN_EXPRESSION_H
+#define LN_EXPRESSION_H
 
 #include "baseExpression.h"
 #include <math.h>
 
-///A exponent expression that raises the left side to the power of the right side
-class PowerExpression : public BaseExpression
+///A natural log expression that computes log(left), with base e
+class LnExpression : public BaseExpression
 {
     
 public:
-
+    
     ///Constructs a power expression
-    PowerExpression(BaseExpression* pLeft, BaseExpression* pRight)
+    LnExpression(BaseExpression* pLeft, BaseExpression* pRight)
     {
         mLeft = pLeft;
         mRight = pRight;
     }
-
+    
     ///Destructs the expression
-    ~PowerExpression()
+    ~LnExpression()
     {
         delete mLeft;
         delete mRight;
     }
-
+    
     ///Evaluates this expression, i.e compute mLeft^mRight
     inline virtual float evaluate(float pX, float pY)
     {
-        return pow(mLeft->evaluate(pX, pY),mRight->evaluate(pX, pY));
+        return log(mLeft->evaluate(pX,pY));
     }
-
+    
     ///Prints the expression
     virtual void printExpression()
     {
-        printf("(");
+        printf("ln(");
         mLeft->printExpression();
-        printf(" ^ ");
-        mRight->printExpression();
         printf(")");
     }
 };

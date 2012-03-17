@@ -1,40 +1,57 @@
+//Copyright Marmoset Software, 2012
 //Written by Taylor Petrick
+//
+//3D Graphing Calculator Project
 
 #ifndef BASE_EXPRESSION_H
 #define BASE_EXPRESSION_H
-#include <stdio.h>
 
+#include <stdio.h>
+#include <math.h>
+
+///The base expression class from which all other expression types are derived
 class BaseExpression
 {
-	protected:
-		
-		BaseExpression* mLeft;
-		BaseExpression* mRight;
+    
+protected:
+    
+    ///The left hand side of the expression, either another expression, a variable or a number
+    BaseExpression* mLeft;
+    
+    ///The right hand side of the expression
+    BaseExpression* mRight;
 
-	public:
+public:
 
-		BaseExpression()
-		{
-			mLeft = mRight = 0;
-		}
+    ///Constructs a new expression
+    BaseExpression()
+    {
+        mLeft = mRight = 0;
+    }
 
-		BaseExpression(BaseExpression* pLeft, BaseExpression* pRight)
-		{
-			mLeft = pLeft;
-			mRight = pRight;
-		}
+    ///Constructs an expression from two sides
+    BaseExpression(BaseExpression* pLeft, BaseExpression* pRight)
+    {
+        mLeft = pLeft;
+        mRight = pRight;
+    }
 
-		~BaseExpression()
-		{
-			if(mLeft)
-				delete mLeft;
-			if(mRight)
-				delete mRight;
-		}
+    ///Destroys an expression
+    ~BaseExpression()
+    {
+        if(mLeft)
+            delete mLeft;
+        
+        if(mRight)
+            delete mRight;
+    }
 
-		inline virtual float evaluate(float pX, float pY) = 0;
+    
+    ///Evaluates the expression at the point pX, pY
+    inline virtual float evaluate(float pX, float pY) = 0;
 
-		virtual void printExpression() = 0;
+    ///Prints the expression
+    virtual void printExpression() = 0;
 };
 
 #endif

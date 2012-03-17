@@ -1,38 +1,49 @@
+//Copyright Marmoset Software, 2012
 //Written by Taylor Petrick
+//
+//3D Graphing Calculator Project
 
 #ifndef NUMBER_EXPRESSION_H
 #define NUMBER_EXPRESSION_H
 
 #include "baseExpression.h"
 
+///A numeric expression that simply evaluates to it's assigned float value
 class NumberExpression : public BaseExpression
 {
-	protected:
-		float mValue;
+    
+protected:
+    
+    ///The value of this numeric expression
+    float mValue;
 
-	public:
+public:
 
-		NumberExpression(float pValue)
-		{
-			mLeft = 0;
-			mRight = 0;
-			mValue = pValue;
-		}
+    ///Constructs a new numeric expression from a float value
+    NumberExpression(float pValue)
+    {
+        mLeft = 0;
+        mRight = 0;
+        mValue = pValue;
+    }
 
-		~NumberExpression()
-		{
+    ///Destructs this numeric expression
+    ~NumberExpression()
+    {
 
-		}
+    }
 
-		inline virtual float evaluate(float pX, float pY)
-		{
-			return mValue;
-		}
+    ///Returns the numeric value of this expression
+    inline virtual float evaluate(float pX, float pY)
+    {
+        return mValue;
+    }
 
-		virtual void printExpression()
-		{
-			printf("%f",mValue);
-		}
+    ///Prints this expression
+    virtual void printExpression()
+    {
+        printf("%f",mValue);
+    }
 };
 
 #endif

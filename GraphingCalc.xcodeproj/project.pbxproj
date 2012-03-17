@@ -43,6 +43,10 @@
 		A26208C31506F3C2007FB67B /* token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = token.h; sourceTree = "<group>"; };
 		A26208C71506F3E3007FB67B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		A26208C81506F3E3007FB67B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		A29EE4FC1515350300CDAA89 /* modExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modExpression.h; sourceTree = "<group>"; };
+		A29EE4FE151535A100CDAA89 /* logExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logExpression.h; sourceTree = "<group>"; };
+		A29EE4FF1515368A00CDAA89 /* lnExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lnExpression.h; sourceTree = "<group>"; };
+		A29EE5001515386D00CDAA89 /* trigExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trigExpression.h; sourceTree = "<group>"; };
 		A2B6E81C150664A5003787C7 /* GraphingCalc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GraphingCalc; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -76,10 +80,14 @@
 				A26208B61506F3C2007FB67B /* baseExpression.h */,
 				A26208B71506F3C2007FB67B /* divideExpression.h */,
 				A26208B81506F3C2007FB67B /* expressions.h */,
+				A29EE4FF1515368A00CDAA89 /* lnExpression.h */,
+				A29EE4FE151535A100CDAA89 /* logExpression.h */,
+				A29EE4FC1515350300CDAA89 /* modExpression.h */,
 				A26208B91506F3C2007FB67B /* multiplyExpression.h */,
 				A26208BA1506F3C2007FB67B /* numberExpression.h */,
 				A26208BB1506F3C2007FB67B /* powExpression.h */,
 				A26208BC1506F3C2007FB67B /* subtractExpression.h */,
+				A29EE5001515386D00CDAA89 /* trigExpression.h */,
 				A26208BD1506F3C2007FB67B /* variableExpression.h */,
 			);
 			name = expression;

@@ -1,4 +1,7 @@
-//Written by Rollen D'Souza
+//Copyright Marmoset Software, 2012
+//Written by Rollen D'Souza and Taylor Petrick
+//
+//3D Graphing Calculator Project
 
 #ifndef TOKEN_H
 #define TOKEN_H
@@ -19,6 +22,40 @@ enum TokenType
 
 	//An operator, i.e +,/,^, tan, etc
 	eOperator
+};
+
+enum OperatorType
+{
+    eAddition,
+    eSubtraction,
+    
+    eMultiplication,
+    
+    eDivision,
+    
+    eMod,
+    
+    ePower,
+    eRoot,
+    eLog,
+    eLn,
+    
+    eSin,
+    eCos,
+    eTan,
+    
+    eASin,
+    eACos,
+    eATan,
+    
+    eSinH,
+    eCosH,
+    eTanH,
+    
+    eASinH,
+    eACosH,
+    eATanH
+    
 };
 
 //A class for storing a single token in an input string

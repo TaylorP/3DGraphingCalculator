@@ -1,4 +1,7 @@
+//Copyright Marmoset Software, 2012
 //Written by Taylor Petrick
+//
+//3D Graphing Calculator Project
 
 #ifndef VARIABLE_EXPRESSION_H
 #define VARIABLE_EXPRESSION_H

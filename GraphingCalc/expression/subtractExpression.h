@@ -1,4 +1,7 @@
+//Copyright Marmoset Software, 2012
 //Written by Taylor Petrick
+//
+//3D Graphing Calculator Project
 
 #ifndef SUBTRACT_EXPRESSION_H
 #define SUBTRACT_EXPRESSION_H
@@ -6,36 +9,42 @@
 
 #include "baseExpression.h"
 
-//Expression
+//A subtraction operation
 class SubtractExpression : public BaseExpression
 {
-	public:
+    
+public:
 
-		SubtractExpression(BaseExpression* pLeft, BaseExpression* pRight)
-		{
-			mLeft = pLeft;
-			mRight = pRight;
-		}
+    ///Creates a new subtraction expression
+    SubtractExpression(BaseExpression* pLeft, BaseExpression* pRight)
+    {
+        mLeft = pLeft;
+        mRight = pRight;
+    }
 
-		~SubtractExpression()
-		{
-			delete mLeft;
-			delete mRight;
-		}
+    ///Destroys the expression
+    ~SubtractExpression()
+    {
+        delete mLeft;
+        delete mRight;
+    }
 
-		inline virtual float evaluate(float pX, float pY)
-		{
-			return mLeft->evaluate(pX, pY) - mRight->evaluate(pX, pY);
-		}
+    ///Evaluates the expression at pX, pY
+    inline virtual float evaluate(float pX, float pY)
+    {
+        return mLeft->evaluate(pX, pY) - mRight->evaluate(pX, pY);
+    }
 
-		virtual void printExpression()
-		{
-			printf("(");
-			mLeft->printExpression();
-			printf(" - ");
-			mRight->printExpression();
-			printf(")");
-		}
+    ///Prints the expression
+    virtual void printExpression()
+    {
+        printf("(");
+        mLeft->printExpression();
+        printf(" - ");
+        mRight->printExpression();
+        printf(")");
+    }
+    
 };
 
 #endif

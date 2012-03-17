@@ -19,7 +19,7 @@ const int gWidth  = 1200;
 const int gHeight = 800;
 
 //Rotation variables
-float gXAngle = 0.0f;
+float gXAngle = 45.0f;
 float gYAngle = 0.0f;
 int   gXOrigin = -1;
 int   gYOrigin = -1;
@@ -183,6 +183,7 @@ void renderPoints()
 	//Render the function
     glBegin(GL_POINTS);
 
+    
 	int index = 0;
 	//Loop over the resolution to make the points. If we have 100 res, we go from -50 to 50, for example
 	for(float i =-gGraphRes/2.0f; i<gGraphRes/2.0f; i+=gGraphRes/gGraphBounds)
@@ -284,8 +285,9 @@ void renderScene()
 	glLoadIdentity();
 
 	//Set the VP to a perspective matrix. Field of view of 45, aspect ratio of width/height, and a near-to-far range of 0.1 to 1000 units
-	gluPerspective(45.0f*gZoom,(GLfloat)gWidth/(GLfloat)gHeight,0.1f,1000.0f);
-
+	//gluPerspective(45.0f*gZoom,(GLfloat)gWidth/(GLfloat)gHeight,0.1f,1000.0f);
+    glOrtho(-25*gZoom*(GLfloat)gWidth/(GLfloat)gHeight, 25*gZoom*(GLfloat)gWidth/(GLfloat)gHeight, -25*gZoom, 25*gZoom, 0.1f, 1000.0f);
+    
 	//Look at the point 0,0,0, from the point 0,50,-35. Up vector is 0,1,0, with y pointing upwards. Rotate around the desired axis.
 	gluLookAt(0, 50*gGraphRes/gGraphBounds, -35*gGraphRes/gGraphBounds, 0, 0, 0, 0, 1, 0);
 	glRotatef(gXAngle,0,1,0);
@@ -474,6 +476,8 @@ int main(int argc, char **argv)
 	//Initialize the point cache
 	gPointCache = (float*)malloc(gGraphRes * gGraphRes * sizeof(float));
 
+    TrigExpression *t = new TrigExpression(new LogExpression(new AddExpression(XVAR,new NumberExpression(10.5)), 0),eCos);
+    
 	//Start the main GL loop, will terminate when the window is closed.
 	glutMainLoop();
 
